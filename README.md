@@ -28,3 +28,20 @@ The library returns normalized coordinates in the `0..65535` range. It reads bot
 3. Read `rtouch_get_state()` and forward `dx`/`dy` to USB HID.
 
 See `examples/mdr1986ve92qi_touch_port_example.c` for the intended wire mapping and adapter skeleton.
+
+
+## PS/2 mouse bridge
+
+The repository also contains a PS/2 mouse protocol layer in `include/ps2_mouse.h` / `src/ps2_mouse.c` and a concrete К1986ВЕ92QI example bridge in `examples/mdr1986ve92qi_touch_ps2_mouse.c`.
+
+The PS/2 bridge uses:
+
+- `DATA` -> `PF1`
+- `CLK` -> `PF3`
+
+The example maps touch gestures as follows:
+
+- movement -> PS/2 `dx/dy`;
+- `tap` -> left click;
+- `double tap` -> double left click;
+- `hold` + move -> left-button drag until finger release.
