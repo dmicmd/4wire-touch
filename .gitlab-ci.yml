@@ -1,0 +1,16 @@
+stages:
+  - build
+
+build_hex:
+  stage: build
+  image: xpack/arm-none-eabi-gcc:13.2.1-1.1
+  script:
+    - make clean
+    - make
+  artifacts:
+    paths:
+      - build/touchpad_ps2_mouse.elf
+      - build/touchpad_ps2_mouse.hex
+      - build/touchpad_ps2_mouse.bin
+      - build/touchpad_ps2_mouse.map
+    expire_in: 1 week
